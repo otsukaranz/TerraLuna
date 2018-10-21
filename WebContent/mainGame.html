@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>TerraLuna - Moon Terraforming Sim</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+	html {
+		background-color: #131313;
+		z-index: -2;
+		
+	}
+	img.bg {
+		position: absolute;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+	
+	.rotate {
+		position: absolute;
+		border: 2px solid #04b9bc;
+		width: 21%;
+		height: 40%;
+		top: 5%;
+		left: 3%;
+	}
+	
+	
+	.botborder {
+		position: absolute;
+		border: 2px solid #04b9bc;
+		width: 21%;
+		height: 40%;
+		top: 52%;
+		left: 3%;
+	}
+	
+	.main {
+		position: absolute;
+		border: 2px solid #04b9bc;
+		width: 72%;
+		height: 87%;
+		top: 5%;
+		right: 3%;
+	}
+	
+	.mini {
+		position: relative;
+		margin: 0;
+		float: left;
+		display: inline-block;
+		width: 36px;
+		height: 37.2px;
+		border: 1px solid green;
+	}
+	.tiles {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		
+	}
+	
+	#rover {
+		
+		
+		
+
+	}
+	
+</style>
+</head>
+<body>
+	<img class="bg" src="http://cdn.sci-news.com/images/2017/08/image_5104-NGC-5949.jpg">
+	
+	<div class="left-top border">
+		<img class="rotate" src="https://thumbs.gfycat.com/AdorableWellinformedBadger-size_restricted.gif" >
+		<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black" style="position:absolute;top:45.5%;left:8%;">Select Terrain</button>
+	</div>
+	
+	<div class="botborder"> 
+		<span id="terrain-map">
+		<img src="modal.png" id="modal-map" style="width:100%;height:100%;">
+		</span>
+		<button onclick="loadParse()" class="w3-button w3-black" style="position:absolute;top:102%;left:25%;">Scan Terrain</button>
+		
+		<input type="submit"  class="w3-button w3-black" style="position:absolute;top:102%;left:250%;" value="Deploy Amaris-Rover" />
+		
+	</div>
+	
+	<div class="main">
+		<!-- <img src="" id="main-board" onerror="this.style.display='none'"> -->
+		<img class="rover" id="rover" src="amaris-rover.jpg" style="width:36px;z-index: 1;position:absolute;">
+		<div class="tiles" id="tiles" style="display:none;">
+			<img class="mini" src="../1small.jpg" id="bati">
+			<img class="mini" src="../2small.jpg" id="bati">
+			<img class="mini" src="../3small.jpg" id="bati">
+			<img class="mini" src="../4small.jpg" id="maayo">
+			<img class="mini" src="../5small.jpg" id="maayo">
+			<img class="mini" src="../6small.jpg" id="maayo">
+			<img class="mini" src="../7small.jpg" id="maayo">
+			<img class="mini" src="../8small.jpg" id="maayo">
+			<img class="mini" src="../9small.jpg" id="maayo">
+			<img class="mini" src="../10small.jpg" id="maayo">
+			<img class="mini" src="../11small.jpg" id="maayo">
+			<img class="mini" src="../12small.jpg" id="maayo">
+			<img class="mini" src="../13small.jpg" id="maayo">
+			<img class="mini" src="../14small.jpg" id="maayo">
+			<img class="mini" src="../15small.jpg" id="maayo">
+			<img class="mini" src="../16small.jpg" id="maayo">
+			<img class="mini" src="../17small.jpg" id="maayo">
+			<img class="mini" src="../18small.jpg" id="maayo">
+			<img class="mini" src="../19small.jpg" id="maayo">
+			<img class="mini" src="../20small.jpg" id="maayo">
+			<img class="mini" src="../21small.jpg" id="maayo">
+			<img class="mini" src="../22small.jpg" id="bati">
+			<img class="mini" src="../23small.jpg" id="bati">
+			<img class="mini" src="../24small.jpg" id="bati">
+			<img class="mini" src="../25small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../26small.jpg" id="bati">
+			<img class="mini" src="../27small.jpg" id="maayo">
+			<img class="mini" src="../28small.jpg" id="maayo">
+			<img class="mini" src="../29small.jpg" id="maayo">
+			<img class="mini" src="../30small.jpg" id="maayo">
+			<img class="mini" src="../31small.jpg" id="maayo">
+			<img class="mini" src="../32small.jpg" id="maayo">
+			<img class="mini" src="../33small.jpg" id="maayo">
+			<img class="mini" src="../34small.jpg" id="bati">
+			<img class="mini" src="../35small.jpg" id="bati">
+			<img class="mini" src="../36small.jpg" id="maayo">
+			<img class="mini" src="../37small.jpg" id="maayo">
+			<img class="mini" src="../38small.jpg" id="maayo">
+			<img class="mini" src="../39small.jpg" id="maayo">
+			<img class="mini" src="../40small.jpg" id="maayo">
+			<img class="mini" src="../41small.jpg" id="maayo">
+			<img class="mini" src="../42small.jpg" id="bati">
+			<img class="mini" src="../43small.jpg" id="maayo">
+			<img class="mini" src="../44small.jpg" id="maayo">
+			<img class="mini" src="../45small.jpg" id="maayo">
+			<img class="mini" src="../46small.jpg" id="bati">
+			<img class="mini" src="../47small.jpg" id="bati">
+			<img class="mini" src="../48small.jpg" id="bati">
+			<img class="mini" src="../49small.jpg" id="bati">
+			<img class="mini" src="../50small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../51small.jpg" id="bati">
+			<img class="mini" src="../52small.jpg" id="bati">
+			<img class="mini" src="../53small.jpg" id="bati">
+			<img class="mini" src="../54small.jpg" id="maayo">
+			<img class="mini" src="../55small.jpg" id="maayo">
+			<img class="mini" src="../56small.jpg" id="maayo">
+			<img class="mini" src="../57small.jpg" id="maayo">
+			<img class="mini" src="../58small.jpg" id="maayo">
+			<img class="mini" src="../59small.jpg" id="bati">
+			<img class="mini" src="../60small.jpg" id="bati">
+			<img class="mini" src="../61small.jpg" id="maayo">
+			<img class="mini" src="../62small.jpg" id="maayo">
+			<img class="mini" src="../63small.jpg" id="maayo">
+			<img class="mini" src="../64small.jpg" id="maayo">
+			<img class="mini" src="../65small.jpg" id="maayo">
+			<img class="mini" src="../66small.jpg" id="maayo">
+			<img class="mini" src="../67small.jpg" id="maayo">
+			<img class="mini" src="../68small.jpg" id="maayo">
+			<img class="mini" src="../69small.jpg" id="maayo">
+			<img class="mini" src="../70small.jpg" id="maayo">
+			<img class="mini" src="../71small.jpg" id="maayo">
+			<img class="mini" src="../72small.jpg" id="maayo">
+			<img class="mini" src="../73small.jpg" id="bati">
+			<img class="mini" src="../74small.jpg" id="bati">
+			<img class="mini" src="../75small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../76small.jpg" id="bati">
+			<img class="mini" src="../77small.jpg" id="maayo">
+			<img class="mini" src="../78small.jpg" id="bati">
+			<img class="mini" src="../79small.jpg" id="bati">
+			<img class="mini" src="../80small.jpg" id="bati">
+			<img class="mini" src="../81small.jpg" id="maayo">
+			<img class="mini" src="../82small.jpg" id="bati">
+			<img class="mini" src="../83small.jpg" id="bati">
+			<img class="mini" src="../84small.jpg" id="maayo">
+			<img class="mini" src="../85small.jpg" id="maayo">
+			<img class="mini" src="../86small.jpg" id="maayo">
+			<img class="mini" src="../87small.jpg" id="maayo">
+			<img class="mini" src="../88small.jpg" id="maayo">
+			<img class="mini" src="../89small.jpg" id="bati">
+			<img class="mini" src="../90small.jpg" id="maayo">
+			<img class="mini" src="../91small.jpg" id="maayo">
+			<img class="mini" src="../92small.jpg" id="maayo">
+			<img class="mini" src="../93small.jpg" id="bati">
+			<img class="mini" src="../94small.jpg" id="bati">
+			<img class="mini" src="../95small.jpg" id="maayo">
+			<img class="mini" src="../96small.jpg" id="bati">
+			<img class="mini" src="../97small.jpg" id="maayo">
+			<img class="mini" src="../98small.jpg" id="maayo">
+			<img class="mini" src="../99small.jpg" id="bati">
+			<img class="mini" src="../100small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../101small.jpg" id="bati">
+			<img class="mini" src="../102small.jpg" id="maayo">
+			<img class="mini" src="../103small.jpg" id="maayo">
+			<img class="mini" src="../104small.jpg" id="bati">
+			<img class="mini" src="../105small.jpg" id="bati">
+			<img class="mini" src="../106small.jpg" id="bati">
+			<img class="mini" src="../107small.jpg" id="bati">
+			<img class="mini" src="../108small.jpg" id="bati">
+			<img class="mini" src="../109small.jpg" id="maayo">
+			<img class="mini" src="../110small.jpg" id="bati">
+			<img class="mini" src="../111small.jpg" id="bati">
+			<img class="mini" src="../112small.jpg" id="maayo">
+			<img class="mini" src="../113small.jpg" id="maayo">
+			<img class="mini" src="../114small.jpg" id="maayo">
+			<img class="mini" src="../115small.jpg" id="maayo">
+			<img class="mini" src="../116small.jpg" id="maayo">
+			<img class="mini" src="../117small.jpg" id="maayo">
+			<img class="mini" src="../118small.jpg" id="maayo">
+			<img class="mini" src="../119small.jpg" id="maayo">
+			<img class="mini" src="../120small.jpg" id="maayo">
+			<img class="mini" src="../121small.jpg" id="maayo">
+			<img class="mini" src="../122small.jpg" id="bati">
+			<img class="mini" src="../123small.jpg" id="bati">
+			<img class="mini" src="../124small.jpg" id="maayo">
+			<img class="mini" src="../125small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../126small.jpg" id="maayo">
+			<img class="mini" src="../127small.jpg" id="maayo">
+			<img class="mini" src="../128small.jpg" id="maayo">
+			<img class="mini" src="../129small.jpg" id="bati">
+			<img class="mini" src="../130small.jpg" id="bati">
+			<img class="mini" src="../131small.jpg" id="bati">
+			<img class="mini" src="../132small.jpg" id="bati">
+			<img class="mini" src="../133small.jpg" id="bati">
+			<img class="mini" src="../134small.jpg" id="bati">
+			<img class="mini" src="../135small.jpg" id="bati">
+			<img class="mini" src="../136small.jpg" id="bati">
+			<img class="mini" src="../137small.jpg" id="maayo">
+			<img class="mini" src="../138small.jpg" id="maayo">
+			<img class="mini" src="../139small.jpg" id="maayo">
+			<img class="mini" src="../140small.jpg" id="maayo">
+			<img class="mini" src="../141small.jpg" id="maayo">
+			<img class="mini" src="../142small.jpg" id="maayo">
+			<img class="mini" src="../143small.jpg" id="maayo">
+			<img class="mini" src="../144small.jpg" id="maayo">
+			<img class="mini" src="../145small.jpg" id="maayo">
+			<img class="mini" src="../146small.jpg" id="maayo">
+			<img class="mini" src="../147small.jpg" id="maayo">
+			<img class="mini" src="../148small.jpg" id="bati">
+			<img class="mini" src="../149small.jpg" id="maayo">
+			<img class="mini" src="../150small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../151small.jpg" id="maayo">
+			<img class="mini" src="../152small.jpg" id="maayo">
+			<img class="mini" src="../153small.jpg" id="maayo">
+			<img class="mini" src="../154small.jpg" id="maayo">
+			<img class="mini" src="../155small.jpg" id="maayo">
+			<img class="mini" src="../156small.jpg" id="maayo">
+			<img class="mini" src="../157small.jpg" id="bati">
+			<img class="mini" src="../158small.jpg" id="bati">
+			<img class="mini" src="../159small.jpg" id="bati">
+			<img class="mini" src="../160small.jpg" id="bati">
+			<img class="mini" src="../161small.jpg" id="maayo">
+			<img class="mini" src="../162small.jpg" id="maayo">
+			<img class="mini" src="../163small.jpg" id="maayo">
+			<img class="mini" src="../164small.jpg" id="maayo">
+			<img class="mini" src="../165small.jpg" id="maayo">
+			<img class="mini" src="../166small.jpg" id="maayo">
+			<img class="mini" src="../167small.jpg" id="maayo">
+			<img class="mini" src="../168small.jpg" id="maayo">
+			<img class="mini" src="../169small.jpg" id="maayo">
+			<img class="mini" src="../170small.jpg" id="maayo">
+			<img class="mini" src="../171small.jpg" id="maayo">
+			<img class="mini" src="../172small.jpg" id="maayo">
+			<img class="mini" src="../173small.jpg" id="maayo">
+			<img class="mini" src="../174small.jpg" id="maayo">
+			<img class="mini" src="../175small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../176small.jpg" id="maayo">
+			<img class="mini" src="../177small.jpg" id="maayo">
+			<img class="mini" src="../178small.jpg" id="maayo">
+			<img class="mini" src="../179small.jpg" id="maayo">
+			<img class="mini" src="../180small.jpg" id="maayo">
+			<img class="mini" src="../181small.jpg" id="maayo">
+			<img class="mini" src="../182small.jpg" id="bati">
+			<img class="mini" src="../183small.jpg" id="maayo">
+			<img class="mini" src="../184small.jpg" id="maayo">
+			<img class="mini" src="../185small.jpg" id="maayo">
+			<img class="mini" src="../186small.jpg" id="maayo">
+			<img class="mini" src="../187small.jpg" id="maayo">
+			<img class="mini" src="../188small.jpg" id="maayo">
+			<img class="mini" src="../189small.jpg" id="bati">
+			<img class="mini" src="../190small.jpg" id="maayo">
+			<img class="mini" src="../191small.jpg" id="maayo">
+			<img class="mini" src="../192small.jpg" id="maayo">
+			<img class="mini" src="../193small.jpg" id="maayo">
+			<img class="mini" src="../194small.jpg" id="maayo">
+			<img class="mini" src="../195small.jpg" id="maayo">
+			<img class="mini" src="../196small.jpg" id="maayo">
+			<img class="mini" src="../197small.jpg" id="maayo">
+			<img class="mini" src="../198small.jpg" id="maayo">
+			<img class="mini" src="../199small.jpg" id="maayo">
+			<img class="mini" src="../200small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../201small.jpg" id="maayo">
+			<img class="mini" src="../202small.jpg" id="maayo">
+			<img class="mini" src="../203small.jpg" id="maayo">
+			<img class="mini" src="../204small.jpg" id="maayo">
+			<img class="mini" src="../205small.jpg" id="maayo">
+			<img class="mini" src="../206small.jpg" id="maayo">
+			<img class="mini" src="../207small.jpg" id="maayo">
+			<img class="mini" src="../208small.jpg" id="maayo">
+			<img class="mini" src="../209small.jpg" id="maayo">
+			<img class="mini" src="../210small.jpg" id="maayo">
+			<img class="mini" src="../211small.jpg" id="maayo">
+			<img class="mini" src="../212small.jpg" id="maayo">
+			<img class="mini" src="../213small.jpg" id="maayo">
+			<img class="mini" src="../214small.jpg" id="bati">
+			<img class="mini" src="../215small.jpg" id="maayo">
+			<img class="mini" src="../216small.jpg" id="maayo">
+			<img class="mini" src="../217small.jpg" id="bati">
+			<img class="mini" src="../218small.jpg" id="bati">
+			<img class="mini" src="../219small.jpg" id="bati">
+			<img class="mini" src="../220small.jpg" id="maayo">
+			<img class="mini" src="../221small.jpg" id="maayo">
+			<img class="mini" src="../222small.jpg" id="maayo">
+			<img class="mini" src="../223small.jpg" id="maayo">
+			<img class="mini" src="../224small.jpg" id="maayo">
+			<img class="mini" src="../225small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../226small.jpg" id="maayo">
+			<img class="mini" src="../227small.jpg" id="maayo">
+			<img class="mini" src="../228small.jpg" id="bati">
+			<img class="mini" src="../229small.jpg" id="bati">
+			<img class="mini" src="../230small.jpg" id="maayo">
+			<img class="mini" src="../231small.jpg" id="maayo">
+			<img class="mini" src="../232small.jpg" id="maayo">
+			<img class="mini" src="../233small.jpg" id="maayo">
+			<img class="mini" src="../234small.jpg" id="maayo">
+			<img class="mini" src="../235small.jpg" id="maayo">
+			<img class="mini" src="../236small.jpg" id="maayo">
+			<img class="mini" src="../237small.jpg" id="maayo">
+			<img class="mini" src="../238small.jpg" id="maayo">
+			<img class="mini" src="../239small.jpg" id="maayo">
+			<img class="mini" src="../240small.jpg" id="maayo">
+			<img class="mini" src="../241small.jpg" id="maayo">
+			<img class="mini" src="../242small.jpg" id="bati">
+			<img class="mini" src="../243small.jpg" id="bati">
+			<img class="mini" src="../244small.jpg" id="bati">
+			<img class="mini" src="../245small.jpg" id="maayo">
+			<img class="mini" src="../246small.jpg" id="maayo">
+			<img class="mini" src="../247small.jpg" id="maayo">
+			<img class="mini" src="../248small.jpg" id="maayo">
+			<img class="mini" src="../249small.jpg" id="maayo">
+			<img class="mini" src="../250small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../251small.jpg" id="maayo">
+			<img class="mini" src="../252small.jpg" id="maayo">
+			<img class="mini" src="../253small.jpg" id="maayo">
+			<img class="mini" src="../254small.jpg" id="maayo">
+			<img class="mini" src="../255small.jpg" id="maayo">
+			<img class="mini" src="../256small.jpg" id="maayo">
+			<img class="mini" src="../257small.jpg" id="maayo">
+			<img class="mini" src="../258small.jpg" id="maayo">
+			<img class="mini" src="../259small.jpg" id="maayo">
+			<img class="mini" src="../260small.jpg" id="maayo">
+			<img class="mini" src="../261small.jpg" id="maayo">
+			<img class="mini" src="../262small.jpg" id="maayo">
+			<img class="mini" src="../263small.jpg" id="bati">
+			<img class="mini" src="../264small.jpg" id="maayo">
+			<img class="mini" src="../265small.jpg" id="maayo">
+			<img class="mini" src="../266small.jpg" id="maayo">
+			<img class="mini" src="../267small.jpg" id="maayo">
+			<img class="mini" src="../268small.jpg" id="maayo">
+			<img class="mini" src="../269small.jpg" id="maayo">
+			<img class="mini" src="../270small.jpg" id="maayo">
+			<img class="mini" src="../271small.jpg" id="maayo">
+			<img class="mini" src="../272small.jpg" id="maayo">
+			<img class="mini" src="../273small.jpg" id="maayo">
+			<img class="mini" src="../274small.jpg" id="maayo">
+			<img class="mini" src="../275small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../276small.jpg" id="maayo">
+			<img class="mini" src="../277small.jpg" id="maayo">
+			<img class="mini" src="../278small.jpg" id="maayo">
+			<img class="mini" src="../279small.jpg" id="maayo">
+			<img class="mini" src="../280small.jpg" id="maayo">
+			<img class="mini" src="../281small.jpg" id="maayo">
+			<img class="mini" src="../282small.jpg" id="bati">
+			<img class="mini" src="../283small.jpg" id="maayo">
+			<img class="mini" src="../284small.jpg" id="maayo">
+			<img class="mini" src="../285small.jpg" id="maayo">
+			<img class="mini" src="../286small.jpg" id="maayo">
+			<img class="mini" src="../287small.jpg" id="maayo">
+			<img class="mini" src="../288small.jpg" id="maayo">
+			<img class="mini" src="../289small.jpg" id="maayo">
+			<img class="mini" src="../290small.jpg" id="bati">
+			<img class="mini" src="../291small.jpg" id="bati">
+			<img class="mini" src="../292small.jpg" id="bati">
+			<img class="mini" src="../293small.jpg" id="maayo">
+			<img class="mini" src="../294small.jpg" id="maayo">
+			<img class="mini" src="../295small.jpg" id="maayo">
+			<img class="mini" src="../296small.jpg" id="maayo">
+			<img class="mini" src="../297small.jpg" id="maayo">
+			<img class="mini" src="../298small.jpg" id="maayo">
+			<img class="mini" src="../299small.jpg" id="maayo">
+			<img class="mini" src="../300small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../301small.jpg" id="maayo">
+			<img class="mini" src="../302small.jpg" id="maayo">
+			<img class="mini" src="../303small.jpg" id="maayo">
+			<img class="mini" src="../304small.jpg" id="bati">
+			<img class="mini" src="../305small.jpg" id="bati">
+			<img class="mini" src="../306small.jpg" id="bati">
+			<img class="mini" src="../307small.jpg" id="bati">
+			<img class="mini" src="../308small.jpg" id="maayo">
+			<img class="mini" src="../309small.jpg" id="maayo">
+			<img class="mini" src="../310small.jpg" id="maayo">
+			<img class="mini" src="../311small.jpg" id="maayo">
+			<img class="mini" src="../312small.jpg" id="bati">
+			<img class="mini" src="../313small.jpg" id="maayo">
+			<img class="mini" src="../314small.jpg" id="maayo">
+			<img class="mini" src="../315small.jpg" id="maayo">
+			<img class="mini" src="../316small.jpg" id="maayo">
+			<img class="mini" src="../317small.jpg" id="maayo">
+			<img class="mini" src="../318small.jpg" id="maayo">
+			<img class="mini" src="../319small.jpg" id="maayo">
+			<img class="mini" src="../320small.jpg" id="maayo">
+			<img class="mini" src="../321small.jpg" id="maayo">
+			<img class="mini" src="../322small.jpg" id="maayo">
+			<img class="mini" src="../323small.jpg" id="maayo">
+			<img class="mini" src="../324small.jpg" id="maayo">
+			<img class="mini" src="../325small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../326small.jpg" id="maayo">
+			<img class="mini" src="../327small.jpg" id="maayo">
+			<img class="mini" src="../328small.jpg" id="maayo">
+			<img class="mini" src="../329small.jpg" id="maayo">
+			<img class="mini" src="../330small.jpg" id="bati">
+			<img class="mini" src="../331small.jpg" id="bati">
+			<img class="mini" src="../332small.jpg" id="maayo">
+			<img class="mini" src="../333small.jpg" id="maayo">
+			<img class="mini" src="../334small.jpg" id="maayo">
+			<img class="mini" src="../335small.jpg" id="bati">
+			<img class="mini" src="../336small.jpg" id="maayo">
+			<img class="mini" src="../337small.jpg" id="maayo">
+			<img class="mini" src="../338small.jpg" id="maayo">
+			<img class="mini" src="../339small.jpg" id="maayo">
+			<img class="mini" src="../340small.jpg" id="maayo">
+			<img class="mini" src="../341small.jpg" id="maayo">
+			<img class="mini" src="../342small.jpg" id="maayo">
+			<img class="mini" src="../343small.jpg" id="maayo">
+			<img class="mini" src="../344small.jpg" id="maayo">
+			<img class="mini" src="../345small.jpg" id="maayo">
+			<img class="mini" src="../346small.jpg" id="maayo">
+			<img class="mini" src="../347small.jpg" id="maayo">
+			<img class="mini" src="../348small.jpg" id="maayo">
+			<img class="mini" src="../349small.jpg" id="maayo">
+			<img class="mini" src="../350small.jpg" id="maayo">
+			<br>
+			<img class="mini" src="../351small.jpg" id="maayo">
+			<img class="mini" src="../352small.jpg" id="maayo">
+			<img class="mini" src="../353small.jpg" id="maayo">
+			<img class="mini" src="../354small.jpg" id="maayo">
+			<img class="mini" src="../355small.jpg" id="bati">
+			<img class="mini" src="../356small.jpg" id="maayo">
+			<img class="mini" src="../357small.jpg" id="maayo">
+			<img class="mini" src="../358small.jpg" id="maayo">
+			<img class="mini" src="../359small.jpg" id="maayo">
+			<img class="mini" src="../360small.jpg" id="maayo">
+			<img class="mini" src="../361small.jpg" id="maayo">
+			<img class="mini" src="../362small.jpg" id="maayo">
+			<img class="mini" src="../363small.jpg" id="maayo">
+			<img class="mini" src="../364small.jpg" id="maayo">
+			<img class="mini" src="../365small.jpg" id="maayo">
+			<img class="mini" src="../366small.jpg" id="bati">
+			<img class="mini" src="../367small.jpg" id="maayo">
+			<img class="mini" src="../368small.jpg" id="bati">
+			<img class="mini" src="../369small.jpg" id="maayo">
+			<img class="mini" src="../370small.jpg" id="maayo">
+			<img class="mini" src="../371small.jpg" id="maayo">
+			<img class="mini" src="../372small.jpg" id="maayo">
+			<img class="mini" src="../373small.jpg" id="maayo">
+			<img class="mini" src="../374small.jpg" id="bati">
+			<img class="mini" src="../375small.jpg" id="bati">
+			<br>
+			<img class="mini" src="../376small.jpg" id="maayo">
+			<img class="mini" src="../377small.jpg" id="maayo">
+			<img class="mini" src="../378small.jpg" id="maayo">
+			<img class="mini" src="../379small.jpg" id="maayo">
+			<img class="mini" src="../380small.jpg" id="maayo">
+			<img class="mini" src="../381small.jpg" id="maayo">
+			<img class="mini" src="../382small.jpg" id="maayo">
+			<img class="mini" src="../383small.jpg" id="maayo">
+			<img class="mini" src="../384small.jpg" id="maayo">
+			<img class="mini" src="../385small.jpg" id="maayo">
+			<img class="mini" src="../386small.jpg" id="bati">
+			<img class="mini" src="../387small.jpg" id="maayo">
+			<img class="mini" src="../388small.jpg" id="maayo">
+			<img class="mini" src="../389small.jpg" id="maayo">
+			<img class="mini" src="../390small.jpg" id="maayo">
+			<img class="mini" src="../391small.jpg" id="maayo">
+			<img class="mini" src="../392small.jpg" id="maayo">
+			<img class="mini" src="../393small.jpg" id="bati">
+			<img class="mini" src="../394small.jpg" id="bati">
+			<img class="mini" src="../395small.jpg" id="maayo">
+			<img class="mini" src="../396small.jpg" id="maayo">
+			<img class="mini" src="../397small.jpg" id="maayo">
+			<img class="mini" src="../398small.jpg" id="maayo">
+			<img class="mini" src="../399small.jpg" id="maayo">
+			<img class="mini" src="../400small.jpg" id="maayo">
+			<br>
+			
+		</div>
+	</div>
+	
+	<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container" style="font-size:10px">
+        <span onclick="modal();" class="w3-button" style="background-color:grey;">Select this terrain</span>
+        <p>Terrain -> Long: 0.6438 Lat: -0.1911 Parsed from: https://quickmap.lroc.asu.edu</p>
+        <img src="modal.png" style="width:100%;height:100%;">
+      </div>
+    </div>
+  </div>
+  
+	<script type="text/javascript">
+		
+		var mo = document.getElementById('modal-map');
+		mo.style.display='none';	
+	
+		function modal(){
+			var m = document.getElementById('id01');
+			m.style.display='none';
+			var n = document.getElementById('modal-map');
+			n.style.display='';
+			
+		}
+		
+		function loadParse(){
+			var mm = document.getElementById('modal-map');
+			mm.src='output.jpg';
+			
+			var nn = document.getElementById('tiles');
+			nn.style.display='';
+		}
+		
+		var pos=1;
+		
+		function deploy(){
+			
+			console.log("Enter deploy()");
+			
+			var rov = document.getElementById('rover');
+			
+			
+			var stat = ["","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","bati","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","maayo","bati","maayo","maayo","bati","bati","bati","maayo","maayo","bati","bati","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo"];
+			
+			console.log(pos);
+			var left=pos+1;
+			var downLeft=pos+26;
+			var down=pos+25;
+				if(stat[left]=="maayo"){
+					console.log("Enter if 1");
+					document.getElementById('rover').style.left+=3.9+'%';
+					//console.log(rov.style.left.value);
+					pos=pos+1;
+					console.log(pos);
+					console.log(stat[pos+1]);
+					//return;
+				} 
+					if(stat[downLeft]=="maayo"){
+					console.log("Enter if 2");
+					document.getElementById('rover').style.left+=3.9+'%';
+					document.getElementById('rover').style.top+=6.2+'%';
+					console.log(rov.style.left.value);
+					console.log(rov.style.top.value);
+					pos=pos+26;
+					console.log(pos+stat[pos+1+25]);
+					//return;
+				} 
+					if(stat[down]=="maayo"){
+					console.log("Enter if 3");
+					document.getElementById('rover').style.top+=6.2+'%';
+					pos=pos+25;
+					console.log(stat[pos+25]);
+					console.log(rov.style.top.value);
+					//return;
+				}
+		}
+		
+		var i=0;
+		var j=0;
+		var posX=0;
+		var posY=0;
+		//var stat = ["","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","bati","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","maayo","bati","maayo","maayo","bati","bati","bati","maayo","maayo","bati","bati","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo"];
+		var list = [
+			["bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati"],
+			["bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","bati","bati","bati"],
+			["bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati"],
+			["bati","maayo","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","bati","bati","maayo","bati","maayo","maayo","bati","bati"],
+			["bati","maayo","maayo","bati","bati","bati","bati","bati","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo"],
+			["maayo","maayo","maayo","bati","bati","bati","bati","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","bati"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","bati","bati","bati","bati","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo"],
+			["maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","bati","maayo","maayo","maayo","maayo","maayo","bati","bati"],
+			["maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","maayo","bati","maayo","maayo","maayo","maayo","maayo","maayo","bati","bati","maayo","maayo","maayo","maayo","maayo","maayo"]
+			
+		];
+		$(window).keydown(function() {
+
+			for(var g=0; g<16; g++){
+				for(var h=0; h<25; h++){
+					if(list[g][h]=="maayo"){
+						i=i+3.9;
+						$('#rover').css({
+							"left":i+"%"
+						});
+					} else {
+						j=j+6.2;
+						$('#rover').css({
+							"top":j+"%"
+						});
+					}
+				}
+			}
+			
+			
+			/* 
+			if(list[posX+1][posY]==="maayo"){
+				i=i+3.9;
+				$('#rover').css({
+					"left":i+"%"
+				});
+				posX=posX+1;
+				console.log("hello");
+				console.log(i);
+			}
+			if(list[posX+1][posY+25]==="maayo"){
+				i=i+3.9;
+				$('#rover').css({
+					"left":i+"%"
+				});
+				console.log("hello");
+				console.log(i);
+				j=j+6.2;
+				$('#rover').css({
+					"top":j+"%"
+				});
+				posX=posX+1;
+				posY=posY+25;
+			}
+			if(list[posX][posY+25]==="maayo"){
+				j=j+6.2;
+				$('#rover').css({
+					"top":j+"%"
+				});
+				
+				posY=posY+25;
+			}
+			 */
+		});
+		
+		
+		
+		
+		
+	</script>
+	 
+</body>
+</html>
